@@ -8,16 +8,17 @@ app.set('view engine', 'ejs');
 //static
 app.use(express.static('./public'));
 //fire controllers
-todoController(app);
+//todoController(app);
 //listen to port
 //app.listen(3000);
 //console.log('You are listening to port 3000');
+
 app.set('port', (process.env.PORT || 5000));
 
 //For avoidong Heroku $PORT error
 app.get('/', function(request, response) {
-    var result = 'App is running'
-    response.send(result);
+  //  var result = 'App is running'
+    response.send(todoController(app));
 }).listen(app.get('port'), function() {
     console.log('App is running, server is listening on port ', app.get('port'));
 });
