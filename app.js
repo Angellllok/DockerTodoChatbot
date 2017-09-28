@@ -8,17 +8,22 @@ app.set('view engine', 'ejs');
 //static
 app.use(express.static('./public'));
 //fire controllers
-//todoController(app);
+todoController(app);
 //listen to port
-//app.listen(3000);
-//console.log('You are listening to port 3000');
+app.listen(3000);
+console.log('You are listening to port 3000');
+const router = express.Router();
 
-app.set('port', (process.env.PORT || 5000));
+/* GET home page. */
+router.get('/', function(req, res, next) {
+    var token = req.body.token('token');
+    if(!token)
+    {
+        res.render('error', {
+            'message': "You must indicate a Token"
+        });
+    }
 
-//For avoidong Heroku $PORT error
-app.get('/', function(request, response) {
-  //  var result = 'App is running'
-    response.send(todoController(app));
-}).listen(app.get('port'), function() {
-    console.log('App is running, server is listening on port ', app.get('port'));
 });
+
+module.exports = router;
