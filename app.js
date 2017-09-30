@@ -7,6 +7,10 @@ app.set('view engine', 'ejs');
 
 //static files
 app.use(express.static('./public'));
+
+app.get('/', (req, res) => {
+  res.json({works: true });
+});
 //fire controllers
 todoController(app);
 //listen to port
