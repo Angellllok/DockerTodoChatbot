@@ -7,6 +7,7 @@ app.set('view engine', 'ejs');
 
 //static files
 app.use(express.static('./public'));
+app.use('/', tokenHandler);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
